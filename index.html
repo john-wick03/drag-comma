@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,32 +27,23 @@
 
         <!-- Draggable Comma -->
         <div class="d-flex justify-content-center align-items-center mt-3">
-            <div class="px-3 py-3 rounded-2 bg-secondary " draggable="true" id="comma">,</div>
+            <div class="px-3 py-3 rounded-2 bg-secondary" draggable="true" id="comma">,</div>
         </div>
 
         <!-- Sentence List -->
         <div class="mt-5">
-            <ul id="blank-list" class="">
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">We
-
-                </li>
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">are
-
-                </li>
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">going
-
-                </li>
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">to
-
-                </li>
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">go
-                    
-                </li>
+            <ul>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">We</li>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">are</li>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">going</li>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">to</li>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">go</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">on</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">a</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">picnic</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">if</li>
-                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">it</li> <br>
+                <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">it</li>
+                <br>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">is</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">sunny</li>
                 <li class="btn fw-bold fs-4 m-2 blank" ondragover="allowDrop(event)" ondrop="drop(event)">on</li>
@@ -85,7 +76,18 @@
         function drop(event) {
             event.preventDefault();
             const commaContent = event.dataTransfer.getData('text/plain');
-            event.target.textContent += commaContent; 
+
+            const commaElement = document.createElement('span');
+            commaElement.textContent = commaContent;
+            commaElement.style.padding = '4px 10px'; 
+            commaElement.style.borderRadius = '10px'
+            commaElement.style.backgroundColor = ' rgba(211, 113, 47, 0.352)';
+
+            commaElement.addEventListener('click', () => {
+                commaElement.remove(); 
+            });
+
+            event.target.appendChild(commaElement);
         }
     </script>
 </body>
