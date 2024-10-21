@@ -34,27 +34,21 @@
         <div class="mt-5">
             <ul>
                 <li class="btn fw-bold fs-4 ">We
-
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
                 </li>
                 <li class="btn fw-bold fs-4  ">are
 
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
                 </li>
-
-
                 <li class="btn fw-bold fs-4  ">going
 
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
                 </li>
 
-
                 <li class="btn fw-bold fs-4  ">to
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
                 </li>
-
-
                 <li class="btn fw-bold fs-4 ">go
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
@@ -74,11 +68,11 @@
                 <li class="btn fw-bold fs-4">if
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
-                </li> <br>
+                </li>
                 <li class="btn fw-bold fs-4 ">it
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
-                </li>
+                </li><br>
                 <li class="btn fw-bold fs-4 ">is
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
@@ -103,83 +97,83 @@
                     <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
 
                 </li>
-                <li class="btn fw-bold fs-4  ">Sunday.</li>
+                <li class="btn fw-bold fs-4 ">Sunday.</li>
             </ul>
         </div>
 
         <div class="mt-4 ms-5">
             <button class="btn btn-primary rounded-5 checkbox">
-                <img src="/images/check-circle-svgrepo-com.svg" alt="checkbox">
+                <img src="/drag-comma/images/check-circle-svgrepo-com.svg" alt="checkbox">
                 <span>Check</span>
             </button>
         </div>
     </div>
 
     <script>
-const comma = document.getElementById('comma');
-const commaAreas = document.querySelectorAll('.comma_area');
-let activeComma = null; 
+        const comma = document.getElementById('comma');
+        const commaAreas = document.querySelectorAll('.comma_area');
+        let activeComma = null;
 
-// Drag and Drop functionality
-comma.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('text/plain', comma.textContent); 
-});
+        // Drag and Drop functionality
+        comma.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text/plain', comma.textContent);
+        });
 
-function allowDrop(event) {
-    event.preventDefault();
-}
+        function allowDrop(event) {
+            event.preventDefault();
+        }
 
-function drop(event) {
-    event.preventDefault();
+        function drop(event) {
+            event.preventDefault();
 
-    // Check if the target already has a comma
-    if (event.target.querySelector('.comma-instance')) {
+            // Check if the target already has a comma
+            if (event.target.querySelector('.comma-instance')) {
 
-    }
+            }
 
-    const commaContent = event.dataTransfer.getData('text/plain'); 
+            const commaContent = event.dataTransfer.getData('text/plain');
 
-    // Create a new span to hold the comma
-    const commaElement = document.createElement('span');
-    commaElement.textContent = commaContent;
-    commaElement.classList.add('comma-instance'); 
-
-    // Add click event to remove the placed comma
-    commaElement.addEventListener('click', () => {
-        commaElement.remove(); 
-    });
-
-    event.target.appendChild(commaElement); 
-}
-
-// Attach event listeners for drag and drop
-commaAreas.forEach((area) => {
-
-    // H click to place comma click
-    area.addEventListener('click', () => {
-        if (activeComma && !area.querySelector('.comma-instance')) {
+            // Create a new span to hold the comma
             const commaElement = document.createElement('span');
-            commaElement.textContent = ',';
+            commaElement.textContent = commaContent;
             commaElement.classList.add('comma-instance');
 
-            // to remove the comma
+            // Add click event to remove the placed comma
             commaElement.addEventListener('click', () => {
-                commaElement.remove(); 
-                resetComma(); 
+                commaElement.remove();
             });
 
-            area.appendChild(commaElement); 
-            activeComma = null; 
+            event.target.appendChild(commaElement);
         }
-    });
-});
 
-// Click event  original comma
-comma.addEventListener('click', () => {
-    activeComma = comma; 
-comma.classList.add('comma-editing')   
-    
-});
+        // Attach event listeners for drag and drop
+        commaAreas.forEach((area) => {
+
+            //  click to place comma click
+            area.addEventListener('click', () => {
+                if (activeComma && !area.querySelector('.comma-instance')) {
+                    const commaElement = document.createElement('span');
+                    commaElement.textContent = ',';
+                    commaElement.classList.add('comma-instance');
+
+                    // to remove the comma
+                    commaElement.addEventListener('click', () => {
+                        commaElement.remove();
+                        resetComma();
+                    });
+
+                    area.appendChild(commaElement);
+                    activeComma = null;
+                }
+            });
+        });
+
+        // Click event  original comma
+        comma.addEventListener('click', () => {
+            activeComma = comma;
+            comma.classList.add('comma-editing');
+
+        });
 
 
 
