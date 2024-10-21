@@ -108,69 +108,68 @@
 
     <script>
         const comma = document.getElementById('comma');
-        const commaAreas = document.querySelectorAll('.comma_area');
-        let activeComma = null;
+const commaAreas = document.querySelectorAll('.comma_area');
+let activeComma = null;
 
-        // Drag and Drop functionality
-        comma.addEventListener('dragstart', (event) => {
-            event.dataTransfer.setData('text/plain', comma.textContent);
-        });
+const originalColor = 'grey'; 
+const activeColor = 'blue'; 
 
-        function allowDrop(event) {
-            event.preventDefault();
-        }
+// Drag and Drop functionality
+comma.addEventListener('dragstart', (event) => {
+    event.dataTransfer.setData('text/plain', comma.textContent);
+});
 
-        function drop(event) {
-            event.preventDefault();
+// Change the background color of the comma when clicked
+comma.addEventListener('click', () => {
+    activeComma = comma;
+    comma.classList.add('comma-editing'); 
+    comma.style.backgroundColor = activeColor;
+});
 
-            // Check if the target already has a comma
-            if (event.target.querySelector('.comma-instance')) {
+function allowDrop(event) {
+    event.preventDefault();
+}
 
-            }
+function drop(event) {
+    event.preventDefault();
 
-            const commaContent = event.dataTransfer.getData('text/plain');
+    const commaContent = event.dataTransfer.getData('text/plain');
 
-            // Create a new span to hold the comma
+    const commaElement = document.createElement('span');
+    commaElement.textContent = commaContent;
+    commaElement.classList.add('comma-instance');
+
+    commaElement.addEventListener('click', () => {
+        commaElement.remove();
+    });
+
+    event.target.appendChild(commaElement);
+    
+    comma.style.backgroundColor = originalColor; 
+}
+
+// Attach event listeners for drag and drop
+commaAreas.forEach((area) => {
+    area.addEventListener('click', () => {
+        if (activeComma && !area.querySelector('.comma-instance')) {
             const commaElement = document.createElement('span');
-            commaElement.textContent = commaContent;
+            commaElement.textContent = ',';
             commaElement.classList.add('comma-instance');
 
-            // Add click event to remove the placed comma
+            // To remove the comma
             commaElement.addEventListener('click', () => {
                 commaElement.remove();
+                resetComma();
             });
 
-            event.target.appendChild(commaElement);
+            area.appendChild(commaElement);
+
+            // Revert the comma color back to original
+            comma.style.backgroundColor = originalColor; 
+            activeComma = null; 
         }
-
-        // Attach event listeners for drag and drop
-        commaAreas.forEach((area) => {
-
-            //  click to place comma click
-            area.addEventListener('click', () => {
-                if (activeComma && !area.querySelector('.comma-instance')) {
-                    const commaElement = document.createElement('span');
-                    commaElement.textContent = ',';
-                    commaElement.classList.add('comma-instance');
-
-                    // to remove the comma
-                    commaElement.addEventListener('click', () => {
-                        commaElement.remove();
-                        resetComma();
-                    });
-
-                    area.appendChild(commaElement);
-                    activeComma = null;
-                }
-            });
-        });
-
-        // Click event  original comma
-        comma.addEventListener('click', () => {
-            activeComma = comma;
-            comma.classList.add('comma-editing');
-
-        });
+    });
+});
 
 
 
