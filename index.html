@@ -26,10 +26,15 @@
                 </h5>
             </div>
         </div>
+      <div class="row">
+          <div class=" col-3 d-flex align-items-center justify-content-center mt-3 ">
+              <div class="px-3 py-3 rounded-2 comma" draggable="true" id="comma1">,</div>
+          </div>
+          <div class="col-3 d-flex align-items-center justify-content-center mt-3 ">
+              <div class="px-3 py-3 rounded-2 comma" draggable="true" id="comma2 ">.</div>
+          </div>
 
-        <div class="d-flex align-items-center justify-content-center mt-3 comma">
-            <div class="px-3 py-3 rounded-2" draggable="true" id="comma">,</div>
-        </div>
+      </div>
 
         <div class="mt-5">
             <ul>
@@ -58,92 +63,99 @@
         </div>
     </div>
 
-    <script>
-        const comma = document.getElementById('comma');
-        const commaAreas = document.querySelectorAll('.comma_area');
-        let activeComma = null;
+   <script>
+    const commas = document.querySelectorAll('.comma'); 
+    const commaAreas = document.querySelectorAll('.comma_area');
+    let activeComma = null;
+    let isActive = false;
 
-        // Set a flag for active state
-        let isActive = false;
-
-        // Click event to set active state
+    // Click event to set active state
+    commas.forEach(comma => {
         comma.addEventListener('click', () => {
-            activeComma = comma;
-            comma.classList.add('comma-editing');
-            isActive = true;
-        });
-
-        // Reset function of comma
-        function resetComma() {
             if (activeComma) {
                 activeComma.classList.remove('comma-editing');
-                activeComma = null;
-                isActive = false;
             }
-        }
 
-        // Drag and drop functions
-        function allowDrop(event) {
-            event.preventDefault();
-        }
+            if (activeComma === comma) {
+                resetComma();
+            } else {
+                // Set the new active comma
+                activeComma = comma;
+                activeComma.classList.add('comma-editing');
+                isActive = true;
+            }
+        });
 
+        // Drag event
         comma.addEventListener('dragstart', (event) => {
             event.dataTransfer.setData('text', comma.textContent);
         });
+    });
 
-        function drop(event) {
-            event.preventDefault();
-            const commaContent = event.dataTransfer.getData('text');
-            const commaElement = document.createElement('span');
-            commaElement.textContent = commaContent;
-            commaElement.classList.add('comma-instance');
-            commaElement.addEventListener('click', () => commaElement.remove());
-
-            event.target.appendChild(commaElement);
-            resetComma();
+    // Reset function for the active comma
+    function resetComma() {
+        if (activeComma) {
+            activeComma.classList.remove('comma-editing');
+            activeComma = null;
+            isActive = false; // Reset active state
         }
+    }
 
-        // Hover function on drag
-        commaAreas.forEach((area) => {
-            area.addEventListener('dragover', (event) => {
-                event.preventDefault();
-                area.classList.add('hovered');
-            });
+    // Drop function
+    function drop(event) {
+        event.preventDefault();
+        const commaContent = event.dataTransfer.getData('text');
+        const commaElement = document.createElement('span');
+        commaElement.textContent = commaContent;
+        commaElement.classList.add('comma-instance');
+        commaElement.addEventListener('click', () => commaElement.remove());
 
-            area.addEventListener('dragleave', () => {
-                area.classList.remove('hovered');
-            });
+        event.target.appendChild(commaElement);
+        resetComma();
+    }
 
-            area.addEventListener('drop', (event) => {
-                drop(event);
-                area.classList.remove('hovered');
-            });
-
-            // Click function to add comma when active
-            area.addEventListener('click', () => {
-                if (isActive && !area.querySelector('.comma-instance')) {
-                    const commaElement = document.createElement('span');
-                    commaElement.textContent = ',';
-                    commaElement.classList.add('comma-instance');
-                    commaElement.addEventListener('click', () => commaElement.remove());
-
-                    area.appendChild(commaElement);
-                    resetComma();
-                }
-            });
-
-            // Hover effect on click
-            area.addEventListener('mouseover', () => {
-                if (isActive) {
-                    area.classList.add('hovered');
-                }
-            });
-
-            area.addEventListener('mouseout', () => {
-                area.classList.remove('hovered');
-            });
+    // Hover functions on drag
+    commaAreas.forEach((area) => {
+        area.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            area.classList.add('hovered');
         });
-    </script>
+
+        area.addEventListener('dragleave', () => {
+            area.classList.remove('hovered');
+        });
+
+        area.addEventListener('drop', (event) => {
+            drop(event);
+            area.classList.remove('hovered');
+        });
+
+        // Click function to add comma when active
+        area.addEventListener('click', () => {
+            if (isActive && !area.querySelector('.comma-instance')) {
+                const commaElement = document.createElement('span');
+                commaElement.textContent = activeComma.textContent; // Use the text of the active comma
+                commaElement.classList.add('comma-instance');
+                commaElement.addEventListener('click', () => commaElement.remove());
+
+                area.appendChild(commaElement);
+                resetComma();
+            }
+        });
+
+        // Hover effect on click
+        area.addEventListener('mouseover', () => {
+            if (isActive) {
+                area.classList.add('hovered');
+            }
+        });
+
+        area.addEventListener('mouseout', () => {
+            area.classList.remove('hovered');
+        });
+    });
+</script>
+
 </body>
 
 </html>
