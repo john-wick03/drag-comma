@@ -1,51 +1,52 @@
-.one{
+.one {
     max-width: max-content;
 }
-.heading{
+
+.heading {
     background-color: rgba(211, 113, 47, 0.352);
-    
 }
-.checkbox{
-    align-items: center;
+
+.checkbox {
     display: flex;
     gap: 5px;
 }
-.btn{
+
+.btn {
     margin: 10px -10px;
     border: none;
 }
-.comma_area{
+
+.comma_area {
     padding: 5px 20px;
+    border: 2px dashed rgb(255, 255, 255);
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
 }
-.comma-instance{
+
+.comma-instance {
     background-color: rgba(211, 113, 47, 0.352);
-     margin-left: -20px;
-     padding: 4px 8px;
-     border-radius: 10px;
+    margin-left: -20px;
+    padding: 4px 8px;
+    border-radius: 10px;
 }
-#comma{
+
+#comma {
     background-color: grey;
 }
-.comma-editing{
-    background-color: lightblue;
-    color: white;
+
+.comma-editing {
+    background-color: rgb(10, 28, 162);
+    color: rgb(0, 147, 239);
 }
-.comma{
+
+.comma {
     margin-left: -30rem;
 }
-@media screen and (max-width:540px) {
-    .comma{
+
+@media screen and (max-width: 540px) {
+    .comma {
         margin-left: 0;
     }
-}
-@media screen and (max-width:780px) {
-    .comma{
-        margin-left: 0;
-    }
-}
-.comma_area {
-    border: 2px dashed rgb(255, 255, 255);
-    transition: border-color 0.3s ease;
 }
 
 .hovered {
