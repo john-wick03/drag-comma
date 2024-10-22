@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -20,159 +20,111 @@
                 <h1 class="bg-dark rounded-4 py-1 text-white text-center">1</h1>
             </div>
             <div class="col-12 col-lg-7">
-                <h5 class="heading rounded-4 px-4 py-3">Drag to Place Commas where they are needed in the sentence
-                    below.</h5>
+                <h5 class="heading rounded-4 px-4 py-3">
+                    Drag to Place Commas where they are needed in the sentence below.
+                </h5>
             </div>
         </div>
 
+        <!-- Draggable comma -->
         <div class="d-flex align-items-center justify-content-center mt-3 comma">
-            <div class="px-3 py-3 rounded-2 " draggable="true" id="comma">,</div>
+            <div class="px-3 py-3 rounded-2" draggable="true" id="comma">,</div>
         </div>
 
+        <!-- Sentence with comma areas -->
         <div class="mt-5">
             <ul>
-                <li class="btn fw-bold fs-4 ">We
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-                </li>
-                <li class="btn fw-bold fs-4  ">are
-
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-                </li>
-                <li class="btn fw-bold fs-4  ">going
-
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-                </li>
-
-                <li class="btn fw-bold fs-4  ">to
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">go
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">on
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">a
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4">picnic
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4">if
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">it
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li><br>
-                <li class="btn fw-bold fs-4 ">is
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">sunny
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">on
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">Friday
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">Saturday
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">or
-                    <span class="comma_area" ondragover="allowDrop(event)" ondrop="drop(event)"></span>
-
-                </li>
-                <li class="btn fw-bold fs-4 ">Sunday.</li>
+                <li class="btn fw-bold fs-4">We <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">are <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">going <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">to <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">go <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">on <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">a <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">picnic <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">if <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">it <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">is <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">sunny <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">on <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">Friday <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">Saturday <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">or <span class="comma_area"></span></li>
+                <li class="btn fw-bold fs-4">Sunday.</li>
             </ul>
+
             <button class="btn btn-primary rounded-5 checkbox mt-5 ms-4">
-                <img src="/drag-comma/images/check-circle-svgrepo-com.svg" alt="checkbox">
                 <span>Check</span>
             </button>
-           
         </div>
-
     </div>
 
     <script>
         const comma = document.getElementById('comma');
-const commaAreas = document.querySelectorAll('.comma_area');
-let activeComma = null;
+        const commaAreas = document.querySelectorAll('.comma_area');
+        let activeComma = null;
 
-const originalColor = 'grey'; 
-const activeColor = 'blue'; 
+        comma.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text', comma.textContent);
+        });
 
-// Drag and Drop functionality
-comma.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('text/plain', comma.textContent);
-});
+        comma.addEventListener('click', () => {
+            activeComma = comma;
+            comma.classList.add('comma-editing');
+        });
 
-// Change the background color of the comma when clicked
-comma.addEventListener('click', () => {
-    activeComma = comma;
-    comma.classList.add('comma-editing'); 
-    comma.style.backgroundColor = activeColor;
-});
+        function allowDrop(event) {
+            event.preventDefault();
+        }
 
-function allowDrop(event) {
-    event.preventDefault();
-}
+        function drop(event) {
+            event.preventDefault();
+            const commaContent = event.dataTransfer.getData('text');
 
-function drop(event) {
-    event.preventDefault();
-
-    const commaContent = event.dataTransfer.getData('text/plain');
-
-    const commaElement = document.createElement('span');
-    commaElement.textContent = commaContent;
-    commaElement.classList.add('comma-instance');
-
-    commaElement.addEventListener('click', () => {
-        commaElement.remove();
-    });
-
-    event.target.appendChild(commaElement);
-    
-    comma.style.backgroundColor = originalColor; 
-}
-
-// Attach event listeners for drag and drop
-commaAreas.forEach((area) => {
-    area.addEventListener('click', () => {
-        if (activeComma && !area.querySelector('.comma-instance')) {
             const commaElement = document.createElement('span');
-            commaElement.textContent = ',';
+            commaElement.textContent = commaContent;
             commaElement.classList.add('comma-instance');
+            commaElement.addEventListener('click', () => commaElement.remove());
 
-            // To remove the comma
-            commaElement.addEventListener('click', () => {
-                commaElement.remove();
-                resetComma();
+            event.target.appendChild(commaElement);
+            resetComma(); 
+        }
+
+        function resetComma() {
+            if (activeComma) {
+                activeComma.classList.remove('comma-editing');
+                activeComma = null;
+            }
+        }
+
+        commaAreas.forEach((area) => {
+            area.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                area.classList.add('hovered'); 
             });
 
-            area.appendChild(commaElement);
+            area.addEventListener('dragleave', () => {
+                area.classList.remove('hovered'); 
+            });
 
-            // Revert the comma color back to original
-            comma.style.backgroundColor = originalColor; 
-            activeComma = null; 
-        }
-    });
-});
+            area.addEventListener('drop', (event) => {
+                drop(event); 
+                area.classList.remove('hovered'); 
+            });
 
+            
+            area.addEventListener('click', () => {
+                if (activeComma && !area.querySelector('.comma-instance')) {
+                    const commaElement = document.createElement('span');
+                    commaElement.textContent = ',';
+                    commaElement.classList.add('comma-instance');
+                    commaElement.addEventListener('click', () => commaElement.remove());
 
-
+                    area.appendChild(commaElement);
+                    resetComma(); 
+                }
+            });
+        });
     </script>
 </body>
 
