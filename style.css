@@ -20,6 +20,9 @@
 .comma-container{
     margin-left: 13rem;
 }
+.image{
+    margin-left: 30rem;
+}
 
 .comma_area {
     padding: 5px 10px;
@@ -52,6 +55,10 @@
         margin-left: 6rem;
         gap: 5rem;
     }
+    .image{
+        margin-left: 0;
+    }
+    
 }
 
 .hovered {
