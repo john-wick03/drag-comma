@@ -12,13 +12,19 @@
 }
 
 .btn {
-    margin: 10px -10px;
+    margin: 10px -13px;
     border: none;
+    cursor: auto;
+}
+.comma-container{
+    margin-left: 13rem;
 }
 
 .comma_area {
+
     padding: 5px 10px;
     transition: border-color 0.3s ease;
+    cursor: auto;
 }
 
 .comma-instance {
@@ -30,23 +36,23 @@
 
 .comma {
     background-color: grey;
+    cursor: pointer;
+
 }
 
 .comma-editing {
     background-color: rgb(10, 28, 162) !important;
     color: rgb(255, 255, 255);
 }
-
-/* .comma {
-    margin-left: -30rem;
-} */
-
 @media screen and (max-width: 540px) {
-    .comma {
-        margin-left: 0;
+    .comma-container {
+        margin-left: 6rem;
+        gap: 5rem;
     }
 }
 
 .hovered {
     border-bottom: 2px dotted rgb(5, 5, 5);
+    cursor: pointer;
+
 }
